@@ -836,7 +836,7 @@ try
     
     
     
-    %%look for Format
+    %% look for Format
     %TODO double check for the syntax
     
     format_idx=cellfun(@(x) contains(x,{'Format'}),annots(:,2));
@@ -1046,9 +1046,16 @@ function ch_group = extract_group_info(metadata)
 
     ch_label                                    = metadata.ch_label                    ;
     
-    idx_grid                                    = regexpi(ch_label,'Gr[0-9]+')         ;
-    idx_grid                                    = cellfun(@isempty,idx_grid)           ; 
-    idx_grid                                    = ~idx_grid                            ;
+%     idx_grid                                    = regexpi(ch_label,'G[0-9]+')         ;
+    idx_G                                       = regexpi(ch_label,'G')                ;
+    idx_G                                       = cellfun(@isempty,idx_G)              ;
+    idx_G                                       = ~idx_G                               ;
+    idx_nr                                      = regexpi(ch_label,'[1-100]')          ;
+    idx_nr                                      = cellfun(@isempty,idx_nr)             ;
+    idx_nr                                      = ~idx_nr                              ;
+    idx_grid                                    = idx_G & idx_nr                       ; 
+%     idx_grid                                    = cellfun(@isempty,idx_grid)           ; 
+%     idx_grid                                    = ~idx_grid                            ;
     idx_strip                                   = ~idx_grid & metadata.ch2use_included ;
     
     ch_group                                    = cell(size(metadata.ch2use_included)) ;

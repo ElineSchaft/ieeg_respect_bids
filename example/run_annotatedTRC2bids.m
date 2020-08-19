@@ -1,4 +1,6 @@
 % Example 
+cd('/home/eline/Documents/Git/Acute_ECoG/ieeg_respect_bids/example')
+
 addpath('../trc2bids/')
 addpath('../micromed_utils/')
 addpath('../external/')
